@@ -1,0 +1,147 @@
+# Instalar paquetes si no los tienes: install.packages(c("dplyr", "ggplot2"))
+# Cargar las librerías necesarias
+library(dplyr)
+library(ggplot2)
+# 1. Cargar la base de datos ya limpia (el "GOLD" de tu pipeline de Python)
+df <- read.csv("ai_impact_jobs_2010_2025_GOLD.csv")
+# Instalar paquetes si no los tienes: install.packages(c("dplyr", "ggplot2"))
+# Cargar las librerías necesarias
+library(dplyr)
+library(ggplot2)
+# 1. Cargar la base de datos ya limpia (el "GOLD" de tu pipeline de Python)
+df <- read.csv("ai_impact_jobs_2010_2025_GOLD.csv")
+# 2. Filtrar por las regiones de interés
+# (Asegúrate de cambiar estos nombres si en tu base de datos están en inglés, como "US", "Europe", "Asia")
+regiones_objetivo <- c("EEUU", "Europa", "Asia")
+df_segmentado <- df %>%
+filter(region %in% regiones_objetivo)
+# 3. Calcular la Correlación de Pearson segmentada por regiones
+# Comparamos la Intensidad de IA (ai_intensity) contra el Salario (salary_usd)
+correlacion_resultados <- df_segmentado %>%
+group_by(region) %>%
+summarize(
+correlacion_pearson = cor(ai_intensity, salary_usd, method = "pearson", use = "complete.obs")
+)
+# Instalar paquetes si no los tienes: install.packages(c("dplyr", "ggplot2"))
+# Cargar las librerías necesarias
+library(dplyr)
+library(ggplot2)
+# 1. Cargar la base de datos ya limpia (el "GOLD" de tu pipeline de Python)
+df <- read.csv("ai_impact_jobs_2010_2025_GOLD.csv")
+# 2. Filtrar por las regiones de interés
+# (Asegúrate de cambiar estos nombres si en tu base de datos están en inglés, como "US", "Europe", "Asia")
+regiones_objetivo <- c("EEUU", "Europa", "Asia")
+df_segmentado <- df %>%
+filter(region %in% regiones_objetivo)
+# 3. Calcular la Correlación de Pearson segmentada por regiones
+# Comparamos la Intensidad de IA (ai_intensity) contra el Salario (salary_usd)
+correlacion_resultados <- df_segmentado %>%
+group_by(region) %>%
+summarize(
+correlacion_pearson = cor(ai_intensity, salary_usd, method = "pearson", use = "complete.obs")
+)
+# Instalar paquetes si no los tienes: install.packages(c("dplyr", "ggplot2"))
+# Cargar las librerías necesarias
+library(dplyr)
+library(ggplot2)
+# 1. Cargar la base de datos ya limpia (el "GOLD" de tu pipeline de Python)
+df <- read.csv(file.choose())
+# 2. Filtrar por las regiones de interés
+# (Asegúrate de cambiar estos nombres si en tu base de datos están en inglés, como "US", "Europe", "Asia")
+regiones_objetivo <- c("EEUU", "Europa", "Asia")
+df_segmentado <- df %>%
+filter(region %in% regiones_objetivo)
+# 3. Calcular la Correlación de Pearson segmentada por regiones
+# Comparamos la Intensidad de IA (ai_intensity) contra el Salario (salary_usd)
+correlacion_resultados <- df_segmentado %>%
+group_by(region) %>%
+summarize(
+correlacion_pearson = cor(ai_intensity, salary_usd, method = "pearson", use = "complete.obs")
+)
+# 1. Cargar las librerías necesarias
+library(dplyr)
+library(ggplot2)
+# 2. Cargar los datos limpios
+# Asegúrate de que tu directorio de trabajo esté bien configurado como vimos antes
+df <- read.csv(file.choose())
+# 3. Preparar los datos: Filtrar regiones y convertir texto a números
+regiones_objetivo <- c("EEUU", "Europa", "Asia")
+df_preparado <- df %>%
+# Filtrar solo las regiones que te interesan
+filter(region %in% regiones_objetivo) %>%
+# Crear la nueva variable numérica 'ai_intensity' basada en 'ai_skills'
+mutate(
+ai_intensity = case_when(
+ai_skills == "Not Specified" ~ 0,
+ai_skills == "Basic"         ~ 1, # Cambia "Basic" por la palabra exacta de tu base si es distinta
+ai_skills == "Intermediate"  ~ 2, # Cambia "Intermediate" si es distinta
+ai_skills == "Advanced"      ~ 3, # Cambia "Advanced" si es distinta
+TRUE ~ NA_real_                   # Ignora valores no contemplados
+)
+)
+# 4. Calcular la Correlación de Pearson
+correlacion_resultados <- df_preparado %>%
+group_by(region) %>%
+summarize(
+correlacion_pearson = cor(ai_intensity, salary_usd, method = "pearson", use = "complete.obs")
+)
+unique(df$ai_skills)
+unique(df$region)
+# 1. Cargar las librerías necesarias
+# Si te falta stringr, instálala usando: install.packages("stringr")
+library(dplyr)
+library(ggplot2)
+library(stringr) # Necesaria para contar las comas en el texto
+# 2. Cargar los datos limpios
+df <- read.csv("ai_impact_jobs_2010_2025_GOLD.csv")
+# 3. Preparar los datos
+df_preparado <- df %>%
+# Limpiar la región: Homogeneizar Norteamérica, Europa y agrupar todo lo que sea Asia
+mutate(
+region_agrupada = case_when(
+region == "North America" ~ "EEUU/Norteamérica",
+region == "Europe" ~ "Europa",
+region %in% c("East Asia", "South Asia", "Southeast Asia") ~ "Asia",
+TRUE ~ NA_character_ # Ignorar el resto (África, Sudamérica, etc.) para este análisis
+)
+) %>%
+# Filtrar para quedarnos solo con las regiones de la hipótesis
+filter(!is.na(region_agrupada)) %>%
+# Crear la 'Intensidad IA': Contar las habilidades
+mutate(
+ai_intensity = case_when(
+ai_skills == "Not Specified" ~ 0,
+# Si hay texto, cuenta las comas y suma 1. (Ej: 1 coma = 2 habilidades)
+TRUE ~ str_count(ai_skills, ",") + 1
+)
+)
+# 4. Calcular la Correlación de Pearson por región
+correlacion_resultados <- df_preparado %>%
+group_by(region_agrupada) %>%
+summarize(
+correlacion_pearson = cor(ai_intensity, salary_usd, method = "pearson", use = "complete.obs")
+)
+# Mostrar los resultados matemáticos
+print("--- Correlación de Pearson (Cantidad de Skills IA vs Salario USD) ---")
+print(correlacion_resultados)
+# 5. Crear el Gráfico de Dispersión
+grafico_dispersion <- ggplot(df_preparado, aes(x = ai_intensity, y = salary_usd, color = region_agrupada)) +
+# Usamos un poco de "jitter" para separar los puntos, ya que los valores X serán 0, 1, 2, 3 o 4 exactos
+geom_point(alpha = 0.4, position = position_jitter(width = 0.15, height = 0)) +
+geom_smooth(method = "lm", color = "black", se = TRUE, linewidth = 0.8) +
+facet_wrap(~ region_agrupada) +
+scale_x_continuous(breaks = c(0, 1, 2, 3, 4, 5)) + # Forzar el eje X a mostrar números enteros
+labs(
+title = "Prima Salarial: Cantidad de Habilidades IA vs. Salario",
+subtitle = "¿Se paga más por dominar más tecnologías de IA?",
+x = "Intensidad de IA (Nº de tecnologías dominadas)",
+y = "Salario (USD)",
+color = "Región"
+) +
+theme_minimal() +
+theme(
+plot.title = element_text(face = "bold", size = 14),
+legend.position = "none" # Ocultamos leyenda porque ya está separada por paneles
+)
+# Mostrar el gráfico
+print(grafico_dispersion)
