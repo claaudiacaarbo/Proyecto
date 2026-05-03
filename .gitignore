@@ -1,0 +1,8 @@
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+venv/
+*.pyc
+memoria_actual.pdf
+memoria_actual_extraida.txt
+desktop.ini

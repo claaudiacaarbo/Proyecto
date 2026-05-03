@@ -1,0 +1,84 @@
+{
+  "rows": 4970,
+  "columns": 22,
+  "year_min": 2010,
+  "year_max": 2025,
+  "salary_mean": 62541.95,
+  "automation_risk_mean": 0.5883,
+  "ai_intensity_salary_pearson_correlation": 0.4097,
+  "reskilling_required_percent": {
+    "False": 67.95,
+    "True": 32.05
+  },
+  "salary_mean_by_ai_mentioned": {
+    "without_ai": 53123.58,
+    "with_ai": 82507.95
+  },
+  "cleaning_report": {
+    "raw_rows": 5000,
+    "clean_rows": 4970,
+    "duplicated_removed": 0,
+    "missing_before": {
+      "job_id": 0,
+      "posting_year": 0,
+      "country": 0,
+      "region": 0,
+      "city": 0,
+      "company_name": 0,
+      "company_size": 0,
+      "industry": 0,
+      "job_title": 0,
+      "seniority_level": 0,
+      "ai_mentioned": 0,
+      "ai_keywords": 3377,
+      "ai_intensity_score": 0,
+      "core_skills": 0,
+      "ai_skills": 3377,
+      "salary_usd": 0,
+      "salary_change_vs_prev_year_percent": 0,
+      "automation_risk_score": 0,
+      "reskilling_required": 0,
+      "ai_job_displacement_risk": 0,
+      "job_description_embedding_cluster": 0,
+      "industry_ai_adoption_stage": 0
+    },
+    "missing_after": {
+      "job_id": 0,
+      "posting_year": 0,
+      "country": 0,
+      "region": 0,
+      "city": 0,
+      "company_name": 0,
+      "company_size": 0,
+      "industry": 0,
+      "job_title": 0,
+      "seniority_level": 0,
+      "ai_mentioned": 0,
+      "ai_keywords": 0,
+      "ai_intensity_score": 0,
+      "core_skills": 0,
+      "ai_skills": 0,
+      "salary_usd": 0,
+      "salary_change_vs_prev_year_percent": 0,
+      "automation_risk_score": 0,
+      "reskilling_required": 0,
+      "ai_job_displacement_risk": 0,
+      "job_description_embedding_cluster": 0,
+      "industry_ai_adoption_stage": 0
+    },
+    "salary_iqr": {
+      "q1": 36575.5,
+      "q3": 81811.75,
+      "iqr": 45236.25,
+      "lower_bound": -31278.875,
+      "upper_bound": 149666.125,
+      "removed_rows": 30
+    },
+    "automation_risk_out_of_range_removed": 0,
+    "selected_industries": []
+  },
+  "chart_report": {
+    "matplotlib_png_created": false,
+    "svg_fallback_created": true
+  }
+}

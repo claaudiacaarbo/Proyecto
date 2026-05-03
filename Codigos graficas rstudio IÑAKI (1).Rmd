@@ -6,6 +6,7 @@ date: "2026-03-04"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 
 ## CARGAR LOS DATOS
@@ -46,7 +47,6 @@ Ahora crearemos las graficas para identificar visualmente y por tanto mas rapida
 #grafica del tamaño de la empresa
 ggplot(altos_riesgo, aes(x = company_size)) +
   geom_bar(fill = "steelblue") +
-  scale_y_continuous(limits = c(0, 325)) +
   theme_minimal() +
   labs(title = "Cantidad de casos por tamaño de empresa (riesgo > 0.7)",
        x = "Tamaño de empresa",
@@ -55,7 +55,6 @@ ggplot(altos_riesgo, aes(x = company_size)) +
 #grafica del trabajo
 ggplot(altos_riesgo, aes(x = job_title)) +
   geom_bar(fill = "darkorange") +
-  scale_y_continuous(limits = c(0, 325)) +
   theme_minimal() +
   labs(title = "Cantidad de job titles con riesgo > 0.7",
        x = "Job Title",
@@ -65,7 +64,6 @@ ggplot(altos_riesgo, aes(x = job_title)) +
 #grafica tipo de industria
 ggplot(altos_riesgo, aes(x = industry)) +
   geom_bar(fill = "seagreen") +
-  scale_y_continuous(limits = c(0, 325)) +
   theme_minimal() +
   labs(title = "Cantidad de industrias con riesgo > 0.7",
        x = "Industria",
