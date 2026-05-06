@@ -1,0 +1,6 @@
+﻿Industria;Nº de ofertas;Media de automation_risk_score;% de ofertas con riesgo > 0,7
+Agriculture;567;0,620;50,6 %
+Healthcare;557;0,612;45,2 %
+Manufacturing;569;0,608;44,6 %
+Retail;564;0,599;46,8 %
+Tech;573;0,525;34,4 %

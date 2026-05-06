@@ -1,0 +1,18 @@
+Resumen de comprobación del apartado 6.3
+
+Número de registros de la versión GOLD: 2.830
+
+Diferencia de salario medio entre ofertas con IA y sin IA:
+- Salario medio sin mención de IA: 53.250,22 USD
+- Salario medio con mención de IA: 82.331,61 USD
+- Diferencia: 29.081,39 USD
+- Incremento relativo: 54,6 %
+
+Correlaciones:
+- Pearson: 0,402 (p < 0,001)
+- Spearman: 0,306 (p < 0,001)
+
+Carpetas generadas:
+- Figuras: salidas_6_3/figuras
+- Tablas CSV/Excel/Markdown: salidas_6_3/tablas
+- Tablas en PNG: salidas_6_3/tablas_png

@@ -1,8 +1,15 @@
+# Python
 __pycache__/
-.ipynb_checkpoints/
+*.pyc
 .venv/
 venv/
-*.pyc
-memoria_actual.pdf
-memoria_actual_extraida.txt
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db
 desktop.ini
+
+# Archivos temporales
+*.tmp
+~$*

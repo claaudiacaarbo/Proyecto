@@ -7,8 +7,8 @@
   "automation_risk_mean": 0.5883,
   "ai_intensity_salary_pearson_correlation": 0.4097,
   "reskilling_required_percent": {
-    "False": 67.95,
-    "True": 32.05
+    "false": 67.95,
+    "true": 32.05
   },
   "salary_mean_by_ai_mentioned": {
     "without_ai": 53123.58,
@@ -16,8 +16,8 @@
   },
   "cleaning_report": {
     "raw_rows": 5000,
-    "clean_rows": 4970,
     "duplicated_removed": 0,
+    "clean_rows": 4970,
     "missing_before": {
       "job_id": 0,
       "posting_year": 0,
@@ -74,11 +74,6 @@
       "upper_bound": 149666.125,
       "removed_rows": 30
     },
-    "automation_risk_out_of_range_removed": 0,
-    "selected_industries": []
-  },
-  "chart_report": {
-    "matplotlib_png_created": false,
-    "svg_fallback_created": true
+    "automation_risk_out_of_range_removed": 0
   }
 }
