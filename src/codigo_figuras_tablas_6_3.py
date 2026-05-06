@@ -1,7 +1,7 @@
 """
 Código para generar las tablas y figuras del apartado 6.3.
 Proyecto: Evolución del Empleo ante la Inteligencia Artificial (2010-2025)
-Dataset esperado: ai_impact_jobs_2010_2025_GOLD.csv
+Dataset esperado: data/processed/ai_impact_jobs_2010_2025_GOLD.csv
 
 Qué genera este script:
 - Tabla 1: Salario medio ofertado según mención de IA.
@@ -16,10 +16,9 @@ Qué genera este script:
 - Figura 5: Relación entre mención de IA y necesidad de reskilling.
 
 Uso recomendado:
-1. Guarda este archivo en la misma carpeta que ai_impact_jobs_2010_2025_GOLD.csv.
-2. Ejecuta en terminal:
-       python codigo_figuras_tablas_6_3.py
-3. Los resultados se guardarán en la carpeta salidas_6_3/.
+1. Ejecuta en terminal desde la raíz del repositorio:
+       python src/codigo_figuras_tablas_6_3.py
+2. Los resultados se guardarán en la carpeta outputs/salidas_6_3/.
 
 También puedes importarlo en Jupyter y ejecutar main().
 """
@@ -29,6 +28,9 @@ import warnings
 
 import numpy as np
 import pandas as pd
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 try:
@@ -40,8 +42,8 @@ except ImportError as exc:
 # -----------------------------------------------------------------------------
 # CONFIGURACIÓN GENERAL
 # -----------------------------------------------------------------------------
-DATASET_NAME = "ai_impact_jobs_2010_2025_GOLD.csv"
-OUTPUT_DIR = Path("salidas_6_3")
+DATASET_PATH = Path("data/processed/ai_impact_jobs_2010_2025_GOLD.csv")
+OUTPUT_DIR = Path("outputs/salidas_6_3")
 TABLES_DIR = OUTPUT_DIR / "tablas"
 FIGURES_DIR = OUTPUT_DIR / "figuras"
 TABLE_IMAGES_DIR = OUTPUT_DIR / "tablas_png"
@@ -57,13 +59,11 @@ AUTOMATION_HIGH_RISK_THRESHOLD = 0.7
 # FUNCIONES AUXILIARES
 # -----------------------------------------------------------------------------
 def find_dataset() -> Path:
-    """Busca el dataset GOLD en la carpeta actual y, si existe, en /mnt/data."""
-    candidates = [Path(DATASET_NAME), Path("/mnt/data") / DATASET_NAME]
-    for candidate in candidates:
-        if candidate.exists():
-            return candidate
+    """Busca el dataset GOLD en la ruta organizada del repositorio."""
+    if DATASET_PATH.exists():
+        return DATASET_PATH
     raise FileNotFoundError(
-        f"No se encontró {DATASET_NAME}. Coloca el CSV en la misma carpeta que este script."
+        f"No se encontró {DATASET_PATH}. Ejecuta el script desde la raíz del repositorio."
     )
 
 
