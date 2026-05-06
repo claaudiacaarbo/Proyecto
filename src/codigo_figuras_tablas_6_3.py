@@ -558,6 +558,10 @@ def save_summary_text(
     tabla_2_raw: pd.DataFrame,
 ) -> None:
     """Guarda un pequeño resumen numérico para comprobar los resultados."""
+    figures_path = FIGURES_DIR.as_posix()
+    tables_path = TABLES_DIR.as_posix()
+    table_images_path = TABLE_IMAGES_DIR.as_posix()
+
     salary_false = tabla_1_raw.loc[tabla_1_raw["ai_mentioned"] == False, "salario_medio"].iloc[0]
     salary_true = tabla_1_raw.loc[tabla_1_raw["ai_mentioned"] == True, "salario_medio"].iloc[0]
     difference = salary_true - salary_false
@@ -578,9 +582,9 @@ Correlaciones:
 - Spearman: {format_number_es(tabla_2_raw.loc[1, 'coeficiente'], 3)} ({pvalue_label(tabla_2_raw.loc[1, 'p_value'])})
 
 Carpetas generadas:
-- Figuras: {FIGURES_DIR}
-- Tablas CSV/Excel/Markdown: {TABLES_DIR}
-- Tablas en PNG: {TABLE_IMAGES_DIR}
+- Figuras: {figures_path}
+- Tablas CSV/Excel/Markdown: {tables_path}
+- Tablas en PNG: {table_images_path}
 """
     (OUTPUT_DIR / "resumen_comprobacion.txt").write_text(text, encoding="utf-8")
 

@@ -13,6 +13,6 @@ Correlaciones:
 - Spearman: 0,306 (p < 0,001)
 
 Carpetas generadas:
-- Figuras: salidas_6_3/figuras
-- Tablas CSV/Excel/Markdown: salidas_6_3/tablas
-- Tablas en PNG: salidas_6_3/tablas_png
+- Figuras: outputs/salidas_6_3/figuras
+- Tablas CSV/Excel/Markdown: outputs/salidas_6_3/tablas
+- Tablas en PNG: outputs/salidas_6_3/tablas_png
